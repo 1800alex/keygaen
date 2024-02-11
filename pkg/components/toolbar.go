@@ -6,8 +6,9 @@ import "github.com/maxence-charriere/go-app/v9/pkg/app"
 type Toolbar struct {
 	app.Compo
 
-	OnCreateKey func() // Handler to call to create a key
-	OnImportKey func() // Handler to call to import a key
+	OnAddGitRepo func() // Handler to call to add a git repository
+	OnCreateKey  func() // Handler to call to create a key
+	OnImportKey  func() // Handler to call to import a key
 
 	OnEncryptAndSign   func() // Handler to call to encrypt/sign
 	OnDecryptAndVerify func() // Handler to call to decrypt/verify
@@ -26,6 +27,33 @@ func (c *Toolbar) Render() app.UI {
 							app.Div().
 								Class("pf-c-toolbar__group").
 								Body(
+									app.Button().
+										Type("button").
+										Class("pf-c-button pf-m-plain pf-x-c-tooltip-parent").
+										OnClick(func(ctx app.Context, e app.Event) {
+											c.OnAddGitRepo()
+										}).
+										Body(
+											app.Div().
+												Class("pf-c-tooltip pf-m-right pf-x-c-tooltip").
+												Aria("role", "tooltip").
+												Body(
+													app.Div().
+														Class("pf-c-tooltip__arrow"),
+													app.Div().
+														Class("pf-c-tooltip__content").
+														Body(
+															app.Text("Add Git Repository"),
+														),
+												),
+											app.Span().
+												Class("pf-c-button__icon").
+												Body(
+													app.I().
+														Class("fas fa-plus").
+														Aria("hidden", true),
+												),
+										),
 									app.Button().
 										Type("button").
 										Class("pf-c-button pf-m-plain pf-x-c-tooltip-parent").
@@ -150,6 +178,26 @@ func (c *Toolbar) Render() app.UI {
 							app.Div().
 								Class("pf-c-toolbar__group").
 								Body(
+									app.Div().
+										Class("pf-c-toolbar__item ").
+										Body(
+											app.Button().
+												Class("pf-c-button pf-m-control").
+												Type("button").
+												OnClick(func(ctx app.Context, e app.Event) {
+													c.OnAddGitRepo()
+												}).
+												Body(
+													app.Span().
+														Class("pf-c-button__icon pf-m-start").
+														Body(
+															app.I().
+																Class("fas fa-plus").
+																Aria("hidden", true),
+														),
+													app.Text(" Add Git Repository"),
+												),
+										),
 									app.Div().
 										Class("pf-c-toolbar__item ").
 										Body(

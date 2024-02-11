@@ -12,6 +12,9 @@ type EmptyStateStory struct {
 func (c *EmptyStateStory) Render() app.UI {
 	return c.WithRoot(
 		&components.EmptyState{
+			OnAddGitRepo: func() {
+				app.Window().Call("alert", "Added git repository")
+			},
 			OnCreateKey: func() {
 				app.Window().Call("alert", "Created key")
 			},

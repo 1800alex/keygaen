@@ -4,10 +4,12 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"unicode/utf8"
 
 	"github.com/1800alex/keygaen/pkg/crypt"
+	"github.com/1800alex/keygaen/pkg/git"
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/gopenpgp/v2/crypto"
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
@@ -22,6 +24,7 @@ const (
 type Home struct {
 	app.Compo
 
+	addGitRepoModalOpen               bool
 	createKeyModalOpen                bool
 	importKeyModalOpen                bool
 	encryptAndSignModalOpen           bool
@@ -374,6 +377,9 @@ func (c *Home) Render() app.UI {
 							Class("pf-c-page__main-section pf-m-light pf-m-no-padding pf-u-px-sm-on-xl").
 							Body(
 								&Toolbar{
+									OnAddGitRepo: func() {
+										c.addGitRepoModalOpen = !c.addGitRepoModalOpen
+									},
 									OnCreateKey: func() {
 										c.createKeyModalOpen = !c.createKeyModalOpen
 									},
@@ -396,6 +402,9 @@ func (c *Home) Render() app.UI {
 							app.If(
 								len(c.keys) == 0,
 								&EmptyState{
+									OnAddGitRepo: func() {
+										c.addGitRepoModalOpen = !c.addGitRepoModalOpen
+									},
 									OnCreateKey: func() {
 										c.createKeyModalOpen = !c.createKeyModalOpen
 									},
@@ -453,6 +462,60 @@ func (c *Home) Render() app.UI {
 							),
 						),
 				),
+			app.If(
+				c.addGitRepoModalOpen,
+				&AddGitRepoModal{
+					OnSubmit: func(url, username, password string) {
+						fmt.Println("url", url)
+						fmt.Println("username", username)
+						fmt.Println("password", password)
+						key, err := git.GenerateKey(url, username, password)
+						if err != nil {
+							c.addGitRepoModalOpen = false
+							c.panic(err, func() {
+								c.addGitRepoModalOpen = true
+							})
+
+							return
+						}
+
+						c.addGitRepoModalOpen = false
+
+						fmt.Println("key", key)
+						// c.keySuccessfullyGeneratedModalOpen = true
+
+						// parsedKey, _, err := crypt.ReadKey(key, password)
+						// if err != nil {
+						// 	c.panic(err, func() {})
+
+						// 	return
+						// }
+
+						// id := parsedKey.PrimaryIdentity()
+						// if id == nil {
+						// 	c.panic(errors.New("no identity found in key"), func() {})
+
+						// 	return
+						// }
+
+						// c.keys = append(c.keys, PGPKey{
+						// 	ID:       parsedKey.PrimaryKey.KeyIdString(),
+						// 	Label:    parsedKey.PrimaryKey.KeyIdShortString(),
+						// 	FullName: id.Name,
+						// 	Email:    id.UserId.Email,
+						// 	Private:  parsedKey.PrivateKey != nil,
+						// 	Public:   true,
+						// 	Content:  key,
+						// })
+						// c.writeToLocalStorage()
+					},
+					OnCancel: func(dirty bool, clear chan struct{}) {
+						c.handleCancel(dirty, clear, func() {
+							c.addGitRepoModalOpen = false
+						})
+					},
+				},
+			),
 			app.If(
 				c.createKeyModalOpen,
 				&CreateKeyModal{

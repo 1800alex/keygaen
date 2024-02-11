@@ -12,6 +12,9 @@ type ToolbarStory struct {
 func (c *ToolbarStory) Render() app.UI {
 	return c.WithRoot(
 		&components.Toolbar{
+			OnAddGitRepo: func() {
+				app.Window().Call("alert", "Added git repository")
+			},
 			OnCreateKey: func() {
 				app.Window().Call("alert", "Created key")
 			},

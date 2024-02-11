@@ -6,8 +6,9 @@ import "github.com/maxence-charriere/go-app/v9/pkg/app"
 type EmptyState struct {
 	app.Compo
 
-	OnCreateKey func() // OnCreateKey is the handler to call to create a key
-	OnImportKey func() // OnCreateKey is the handler to call to import a key
+	OnAddGitRepo func() // OnAddGitRepo is the handler to call to add a git repository
+	OnCreateKey  func() // OnCreateKey is the handler to call to create a key
+	OnImportKey  func() // OnCreateKey is the handler to call to import a key
 }
 
 func (c *EmptyState) Render() app.UI {
@@ -23,6 +24,16 @@ func (c *EmptyState) Render() app.UI {
 					app.H1().
 						Class("pf-c-title pf-m-lg").
 						Text("No keys yet"),
+					app.Div().
+						Class("pf-c-empty-state__body").
+						Text("To get started, please create or import a key."),
+					app.Button().
+						Class("pf-c-button pf-m-primary").
+						Type("button").
+						Text("Add Git Repository").
+						OnClick(func(ctx app.Context, e app.Event) {
+							c.OnAddGitRepo()
+						}),
 					app.Div().
 						Class("pf-c-empty-state__body").
 						Text("To get started, please create or import a key."),
