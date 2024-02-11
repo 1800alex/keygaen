@@ -34,7 +34,7 @@ func (c *Navbar) Render() app.UI {
 								Class("pf-c-page__header-tools-item").
 								Body(
 									app.A().
-										Href("https://github.com/pojntfx/keygaen").
+										Href("https://github.com/1800alex/keygaen").
 										Target("_blank").
 										Class("pf-c-button pf-m-plain").
 										Aria("label", "Help").

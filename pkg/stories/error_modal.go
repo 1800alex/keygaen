@@ -3,8 +3,8 @@ package stories
 import (
 	"errors"
 
+	"github.com/1800alex/keygaen/pkg/components"
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
-	"github.com/pojntfx/keygaen/pkg/components"
 )
 
 type ErrorModalStory struct {

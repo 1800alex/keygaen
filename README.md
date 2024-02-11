@@ -6,11 +6,11 @@ Sign, verify, encrypt and decrypt data with PGP in your browser.
 
 ⚠️ keygaen has not yet been audited! While we try to make keygaen as secure as possible, it has not yet undergone a formal security audit by a third party. Please keep this in mind if you use it for security-critical applications. ⚠️
 
-[![hydrun CI](https://github.com/pojntfx/keygaen/actions/workflows/hydrun.yaml/badge.svg)](https://github.com/pojntfx/keygaen/actions/workflows/hydrun.yaml)
+[![hydrun CI](https://github.com/1800alex/keygaen/actions/workflows/hydrun.yaml/badge.svg)](https://github.com/1800alex/keygaen/actions/workflows/hydrun.yaml)
 ![Go Version](https://img.shields.io/badge/go%20version-%3E=1.18-61CFDD.svg)
-[![Go Reference](https://pkg.go.dev/badge/github.com/pojntfx/keygaen.svg)](https://pkg.go.dev/github.com/pojntfx/keygaen)
+[![Go Reference](https://pkg.go.dev/badge/github.com/1800alex/keygaen.svg)](https://pkg.go.dev/github.com/1800alex/keygaen)
 [![Matrix](https://img.shields.io/matrix/keygaen:matrix.org)](https://matrix.to/#/#keygaen:matrix.org?via=matrix.org)
-[![Binary Downloads](https://img.shields.io/github/downloads/pojntfx/keygaen/total?label=binary%20downloads)](https://github.com/pojntfx/keygaen/releases)
+[![Binary Downloads](https://img.shields.io/github/downloads/pojntfx/keygaen/total?label=binary%20downloads)](https://github.com/1800alex/keygaen/releases)
 
 ## Overview
 
@@ -18,7 +18,7 @@ keygaen is an app to work with PGP without having to install anything on your lo
 
 ## Installation
 
-The web app is available on [GitHub releases](https://github.com/pojntfx/keygaen/releases) in the form of a static `.tar.gz` archive; to deploy it, simply upload it to a CDN or copy it to a web server. For most users, this shouldn't be necessary though; thanks to [@maxence-charriere](https://github.com/maxence-charriere)'s [go-app package](https://go-app.dev/), keygaen is a progressive web app. By simply visiting the [public deployment](https://pojntfx.github.io/keygaen/) once, it will be available for offline use whenever you need it:
+The web app is available on [GitHub releases](https://github.com/1800alex/keygaen/releases) in the form of a static `.tar.gz` archive; to deploy it, simply upload it to a CDN or copy it to a web server. For most users, this shouldn't be necessary though; thanks to [@maxence-charriere](https://github.com/maxence-charriere)'s [go-app package](https://go-app.dev/), keygaen is a progressive web app. By simply visiting the [public deployment](https://pojntfx.github.io/keygaen/) once, it will be available for offline use whenever you need it:
 
 [<img src="https://github.com/alphahorizonio/webnetesctl/raw/main/img/launch.png" width="240">](https://pojntfx.github.io/keygaen/)
 
@@ -83,7 +83,7 @@ To contribute, please use the [GitHub flow](https://guides.github.com/introducti
 To build and start a development version of keygaen locally, run the following:
 
 ```shell
-$ git clone https://github.com/pojntfx/keygaen.git
+$ git clone https://github.com/1800alex/keygaen.git
 $ cd keygaen
 $ make depend
 $ make run-pwa/keygaen-pwa

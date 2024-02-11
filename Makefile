@@ -13,10 +13,15 @@ DST ?=
 # Private variables
 clis = keygaen-cli
 pwas = keygaen-pwa
-all: $(addprefix build-cli/,$(clis)) $(addprefix build-pwa/,$(pwas))
+
+.DEFAULT_GOAL := all
+# BUILD_TARGETS := $(addprefix build-cli/,$(clis)) $(addprefix build-pwa/,$(pwas))
+BUILD_TARGETS := $(addprefix build-pwa/,$(pwas))
+
+all: depend build-scss build
 
 # Build
-build: $(addprefix build-cli/,$(clis)) $(addprefix build-pwa/,$(pwas))
+build: $(BUILD_TARGETS)
 
 $(addprefix build-cli/,$(clis)):
 ifdef DST
@@ -55,7 +60,8 @@ $(addprefix uninstall-pwa/,$(pwas)):
 	rm -rf $(DESTDIR)$(WWWROOT)$(WWWPREFIX)
 
 # Run
-run: $(addprefix run-cli/,$(clis)) $(addprefix run-pwa/,$(pwas))
+# run: $(addprefix run-cli/,$(clis)) $(addprefix run-pwa/,$(pwas))
+run: $(addprefix run-pwa/,$(pwas))
 
 $(addprefix run-cli/,$(clis)): build
 	$(OUTPUT_DIR)/$(subst run-cli/,,$@) $(ARGS)

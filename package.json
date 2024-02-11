@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pojntfx/keygaen.git"
+    "url": "git+https://github.com/1800alex/keygaen.git"
   },
   "author": "Felicitas Pojtinger <felicitas@pojtinger.com>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/pojntfx/keygaen/issues"
+    "url": "https://github.com/1800alex/keygaen/issues"
   },
-  "homepage": "https://github.com/pojntfx/keygaen#readme",
+  "homepage": "https://github.com/1800alex/keygaen#readme",
   "dependencies": {
     "@patternfly/patternfly": "^4.217.1"
   },

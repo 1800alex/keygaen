@@ -7,10 +7,10 @@ import (
 	"log"
 	"unicode/utf8"
 
+	"github.com/1800alex/keygaen/pkg/crypt"
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/gopenpgp/v2/crypto"
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
-	"github.com/pojntfx/keygaen/pkg/crypt"
 )
 
 const (
